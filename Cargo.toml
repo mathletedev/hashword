@@ -1,0 +1,8 @@
+[package]
+name = "hashword"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+rust-argon2 = "1.0"
+rpassword = "7.0"
