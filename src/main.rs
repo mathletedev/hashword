@@ -1,4 +1,5 @@
 use argon2::{hash_raw, Config, ThreadMode, Variant, Version};
+use copypasta_ext::{prelude::ClipboardProvider, x11_fork::ClipboardContext};
 use rpassword::prompt_password;
 
 const CONFIG: Config = Config {
@@ -54,4 +55,6 @@ fn main() {
 	}
 
 	println!("{}", res);
+
+	ClipboardContext::new().unwrap().set_contents(res).unwrap();
 }
