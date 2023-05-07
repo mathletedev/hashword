@@ -1,4 +1,4 @@
-# hashword
+# 🔒 hashword
 
 > Command-line password generator by generating hashes
 
