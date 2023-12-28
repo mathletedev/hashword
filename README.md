@@ -25,7 +25,3 @@ Memory cost: `65536`\
 Iterations: `4`\
 Parallelism factor: `8`\
 Hash length: `8`
-
-## Credits
-
-Argon2: https://github.com/P-H-C/phc-winner-argon2
