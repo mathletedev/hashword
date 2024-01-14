@@ -19,9 +19,9 @@ Winner of the [2022 Congressional App Challenge](https://www.congressionalappcha
 
 ## Argon2 config
 
-Variant: `Argon2id`\
-Version: `13`\
-Memory cost: `65536`\
-Iterations: `4`\
-Parallelism factor: `8`\
+Variant: `Argon2id` \
+Version: `13` \
+Memory cost: `65536` \
+Iterations: `4` \
+Parallelism factor: `8` \
 Hash length: `8`
