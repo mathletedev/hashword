@@ -6,7 +6,6 @@ edition = "2021"
 [dependencies]
 rust-argon2 = "1.0"
 rpassword = "7.0"
-copypasta-ext = "0.3.9"
 
 [profile.release]
 codegen-units = 1

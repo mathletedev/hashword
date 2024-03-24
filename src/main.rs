@@ -1,6 +1,6 @@
 use argon2::{hash_raw, Config, ThreadMode, Variant, Version};
-use copypasta_ext::{prelude::ClipboardProvider, x11_fork::ClipboardContext};
 use rpassword::prompt_password;
+use std::process::Command;
 
 const CONFIG: Config = Config {
 	variant: Variant::Argon2id,
@@ -56,5 +56,8 @@ fn main() {
 
 	println!("{}", res);
 
-	ClipboardContext::new().unwrap().set_contents(res).unwrap();
+	Command::new("wl-copy")
+		.arg(res)
+		.status()
+		.expect("Failed to copy to clipboard");
 }
