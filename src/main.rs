@@ -24,35 +24,40 @@ fn main() {
 
 	let hash = hash_raw(key.to_lowercase().as_bytes(), seed.as_bytes(), &CONFIG).unwrap();
 
-	let mut res: String = String::new();
-
 	let characters = String::new() + LOWERCASE + UPPERCASE + NUMERIC + SPECIAL;
 
-	for e in hash.get(0..16).unwrap() {
-		res += &(characters.as_bytes()[*e as usize % characters.len()] as char).to_string();
-	}
+	let mut res = hash
+		.get(0..16)
+		.unwrap()
+		.iter()
+		.map(|e| characters.as_bytes()[*e as usize % characters.chars().count()] as char)
+		.collect::<String>();
 
 	let mut pos: usize = 0;
 
-	for (i, e) in hash.get(16..46).unwrap().iter().enumerate() {
-		if i % 2 == 0 {
-			pos = *e as usize % res.len();
-			continue;
-		}
+	hash.get(16..46)
+		.unwrap()
+		.iter()
+		.enumerate()
+		.for_each(|(i, e)| {
+			if i % 2 == 0 {
+				pos = *e as usize % res.chars().count();
+				return;
+			}
 
-		let charset = match i {
-			0..=15 => LOWERCASE,
-			16..=23 => UPPERCASE,
-			24..=27 => NUMERIC,
-			28..=29 => SPECIAL,
-			_ => "",
-		};
+			let charset = match i {
+				0..=15 => LOWERCASE,
+				16..=23 => UPPERCASE,
+				24..=27 => NUMERIC,
+				28..=29 => SPECIAL,
+				_ => unreachable!(),
+			};
 
-		res.replace_range(
-			pos..pos + 1,
-			&(charset.as_bytes()[*e as usize % charset.len()] as char).to_string(),
-		);
-	}
+			res.replace_range(
+				pos..pos + 1,
+				&(charset.as_bytes()[*e as usize % charset.len()] as char).to_string(),
+			);
+		});
 
 	println!("{}", res);
 
